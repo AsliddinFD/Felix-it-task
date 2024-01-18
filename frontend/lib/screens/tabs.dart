@@ -22,12 +22,10 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     Widget activeScreen = const LanguageSelection();
-    if (currentIndex == 0) {
-      activeScreen = const LanguageSelection();
-    } else if (currentIndex == 1) {
+    if (currentIndex == 1) {
       activeScreen = const SignUpScreen();
     } else if (currentIndex == 2) {
-      activeScreen == const ClubAdsAdd();
+      activeScreen = const ClubAdsAdd();
     }
     return Scaffold(
       body: activeScreen,
@@ -37,17 +35,10 @@ class _TabsScreenState extends State<TabsScreen> {
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.language),
-            label: 'Select Language'
-          ),
+              icon: Icon(Icons.language), label: 'Select Language'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.app_registration),
-            label: 'Sign Up'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Club Ads'
-          ),
+              icon: Icon(Icons.app_registration), label: 'Sign Up'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Club Ads'),
         ],
       ),
     );

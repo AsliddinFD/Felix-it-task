@@ -22,6 +22,10 @@ class CustomInput extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          obscureText:
+              inputLabel == 'Password' || inputLabel == 'Confirm password'
+                  ? true
+                  : false,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(12),
             border: const OutlineInputBorder(
