@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/providers/language_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class DropDown extends StatefulWidget {
+class DropDown extends ConsumerStatefulWidget {
   const DropDown({super.key});
   @override
-  State<DropDown> createState() {
+  ConsumerState<DropDown> createState() {
     return _DropDownState();
   }
 }
 
-class _DropDownState extends State<DropDown> {
+class _DropDownState extends ConsumerState<DropDown> {
   final languages = [
-    {'code': 'UZ', 'language': 'O\'zbek'},
-    {'code': 'RU', 'language': 'Русский'},
-    {'code': 'GB', 'language': 'English'},
+    {'code': 'uz', 'language': 'O\'zbek'},
+    {'code': 'ru', 'language': 'Русский'},
+    {'code': 'uz', 'language': 'Ўзбек'},
   ];
   final languageToCountryCode = {
-    'English': 'GB',
-    'O\'zbek': 'UZ',
-    'Русский': 'RU',
+    'Ўзбек': 'uz',
+    'O\'zbek': 'uz',
+    'Русский': 'ru',
   };
 
   late String countryCode;
@@ -26,7 +29,7 @@ class _DropDownState extends State<DropDown> {
   @override
   void initState() {
     super.initState();
-    countryCode = languageToCountryCode['O\'zbek']!;
+    countryCode = languageToCountryCode['O\'zbek'].toString();
   }
 
   @override
@@ -47,7 +50,7 @@ class _DropDownState extends State<DropDown> {
             height: 14,
           ),
         ),
-        hintText: '  Choose a language',
+        hintText: '  ${AppLocalizations.of(context)!.selectLanguage}',
         trailingIcon: const Icon(Icons.keyboard_arrow_down_outlined),
         selectedTrailingIcon: const Icon(Icons.keyboard_arrow_up_outlined),
         menuStyle: MenuStyle(
@@ -75,6 +78,13 @@ class _DropDownState extends State<DropDown> {
           setState(() {
             countryCode = languageToCountryCode[newVal]!;
           });
+          if (newVal == 'Ўзбек') {
+            ref.watch(languageProvide.notifier).toggleLanguage('Ўзбек');
+          } else {
+            ref.watch(languageProvide.notifier).toggleLanguage(
+                  languageToCountryCode[newVal],
+                );
+          }
         },
       ),
     );

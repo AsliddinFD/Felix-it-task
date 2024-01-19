@@ -1,7 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/utils/styles.dart';
 import 'package:frontend/widgets/dropdown_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageSelection extends StatefulWidget {
   const LanguageSelection({super.key});
@@ -27,11 +27,15 @@ class _LanguageSelectionState extends State<LanguageSelection> {
                   child: SvgPicture.asset('assets/Logo.svg'),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Text(
-                  'Languages',
-                  style: customTextStyle,
+                  AppLocalizations.of(context)!.languages,
+                  style: const TextStyle(
+                    fontFamily: 'Mulish',
+                    fontSize: 14,
+                    color: Color(0xFF232638),
+                  ),
                   textAlign: TextAlign.left,
                 ),
               ),

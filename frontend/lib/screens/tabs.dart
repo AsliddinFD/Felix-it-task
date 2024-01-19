@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/screens/club_ads_add.dart';
-import 'package:frontend/screens/languge_selection_screen.dart';
 import 'package:frontend/screens/sign_up_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:frontend/screens/languge_selection_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -33,12 +34,17 @@ class _TabsScreenState extends State<TabsScreen> {
         currentIndex: currentIndex,
         onTap: selectScreen,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.language), label: 'Select Language'),
+            icon: const Icon(Icons.language),
+            label: AppLocalizations.of(context)!.chooseLanguage,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.app_registration), label: 'Sign Up'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Club Ads'),
+              icon: const Icon(Icons.app_registration),
+              label: AppLocalizations.of(context)!.signUp),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.add),
+              label: AppLocalizations.of(context)!.clubAds),
         ],
       ),
     );
